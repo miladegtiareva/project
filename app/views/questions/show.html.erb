@@ -1,0 +1,55 @@
+<!-- app/views/questions/show.html.erb -->
+<%provide :page_title, 'Просмотр вопроса'%>
+<div class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+    <h1 class="display-4">Вопрос: <%= @question.title %></h1>
+    Вопрос создан: <%=@question.user.name%>
+    </div>
+    <div class="card-body">
+      <p class="card-text"><%= @question.content %></p>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Последнее обновление: <%= @question.updated_at.to_formatted_s(:long) %></small>
+    <h2>Напишите Ваш ответ </h2>
+    <%= render 'questions/shared/error', object: @answer%>
+      <%= form_with model: [@question, @answer] do |f|%>
+      <div class="mb-3">
+      <div class="col-sm-2 col-form-label">
+       <%= f.label :content %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.text_area :content, class: 'form-control'%>
+      </div>
+    </div>
+    <div>
+    <div class="col-sm-10 mb-3">
+      <%= f.submit 'Сохранить ответ', class: 'btn btn-primary' %>
+    </div>
+    </div>
+    <% end %>
+    <div class="container mt-4">
+</div> 
+  <h1 class="display-4">Ответы</h1>
+  <% @answers.each do |answer| %>
+    <div class="card mb-3">
+    <section class="card-header">
+     <%=answer.user.name%>
+     </section>
+      <div class="card-body">
+        <p class="card-text"><%= answer.content %></p>
+      </div>
+      <div class="card-footer text-muted">
+        <!-- Добавьте информацию о времени создания ответа, если доступна -->
+        <%= "Создано: #{answer.created_at.to_formatted_s(:long)}" if answer.created_at %>
+      </div>
+      <div>
+      <%= link_to 'Удалить', question_answer_path(@question, answer), method: :delete,data: {confirm: 'Вы уверены?'}, class: 'btn btn-danger btn-sm'%>
+      <%= link_to 'Изменить', edit_question_answer_path(@question, answer), class: 'btn btn-info btn-sm'%>
+      </div>
+    </div>
+  <% end %>
+      <%= link_to 'Назад', questions_path, class: 'btn btn-primary ms-2' %>
+    </div>
+  </div>

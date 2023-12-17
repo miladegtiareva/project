@@ -1,0 +1,14 @@
+<%provide :page_title, 'Новый вопрос'%>
+<div class="container mt-4">
+  <h1 class="display-4">Новый вопрос</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <%= render 'form' %>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Назад', questions_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>
+

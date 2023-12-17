@@ -1,0 +1,15 @@
+<!-- app/views/questions/edit.html.erb -->
+<%provide :page_title, 'Изменить вопрос'%>
+<div class="container mt-4">
+  <h1 class="display-4">Изменить вопрос</h1>
+
+  <div class="card">
+    <div class="card-body">
+      <%= render 'form' %>
+    </div>
+    <div class="card-footer">
+      <small class="text-muted">Последнее обновление: <%= @question.updated_at.to_formatted_s(:long) %></small>
+      <%= link_to 'Назад', questions_path, class: 'btn btn-danger ms-2' %>
+    </div>
+  </div>
+</div>

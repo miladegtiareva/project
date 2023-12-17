@@ -1,0 +1,17 @@
+<%= render 'questions/shared/error', object: @answer %>
+<%= form_with model: [@question, @answer] do |f|%>
+      <div class="mb-3">
+      <div class="col-sm-2 col-form-label">
+       <%= f.label :content %>
+    </div>
+
+    <div class="col-sm-10">
+      <%= f.text_area :content, class: 'form-control'%>
+      </div>
+    </div>
+    <div>
+    <div class="col-sm-10 mb-3">
+      <%= f.submit 'Сохранить ответ', class: 'btn btn-primary' %>
+    </div>
+    </div>
+    <% end %>

@@ -1,0 +1,29 @@
+<%= render 'questions/shared/error', object: @question %>
+
+<div class="container mt-4">
+  <%= form_with(model: @question, local: true, class: 'needs-validation', novalidate: true) do |form| %>
+    <% if @question.errors.any? %>
+      <div class="alert alert-danger" role="alert">
+        <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+        <ul>
+          <% @question.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="mb-3">
+      <%= form.label :title, class: 'form-label' %>
+      <%= form.text_field :title, class: 'form-control', required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :content, class: 'form-label' %>
+      <%= form.text_area :content, class: 'form-control', required: true %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.submit 'Сохранить вопрос', class: 'btn btn-primary' %>
+    </div>
+  <% end %>
+</div>

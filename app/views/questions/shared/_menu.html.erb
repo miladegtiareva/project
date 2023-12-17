@@ -1,0 +1,36 @@
+<%- provide :main_menu do %>
+<header class = "p-3 bg-dark text-white" >
+    <div class = "container">
+     <nav class="d-flex flex-wrap align-items-center justify-content-lg-start">
+       <ul class = "nav col-12 col-lg-auto me-lg-autp mb-2 justify-content-center mb-md-0">
+       <li><%= nav_tab t('menu.hi'), root_path, class: 'nav-link px2',current_page: current_page %></li>
+       <li><%= nav_tab 'A&Q', questions_path, class: 'nav-link px2',current_page: current_page %></li>
+       </ul>
+       <ul class="nav col-12 col-lg-auto mb-4 mb-md-0 ">
+          <% if user_signed_in? %>
+             <div class="dropdown">
+             <button class="mr-2 dropdown-btn"><%=t('menu.prof')%></button>
+              <div class="dropdown-content">
+              <%= link_to t('menu.change'), edit_user_path(current_user), class: 'dropdown-item delete-profile-btn' %>
+              <%= link_to t('menu.out'), session_path, method: :delete, class: 'dropdown-item delete-profile-btn' %>
+               </div>
+             </div>
+
+          <% else %>
+            <li><%= nav_tab t('menu.reg'), new_user_path,
+              class: 'nav-link px-2', current_page: current_page %></li>
+              <li><%= nav_tab t('menu.enter'), new_session_path,
+              class: 'nav-link px-2', current_page: current_page %></li>
+          <% end %>
+        </ul>
+     <div class="dropdown">
+            <button class="header-button dropdown-btn"><%=t('menu.lan')%></button>
+            <div class="dropdown-content">
+                <%= link_to "English", url_for(locale: 'en') %>
+                <%= link_to "Русский", url_for(locale: 'ru') %>
+            </div>
+       <%= yield %>
+      </div> 
+     </div>
+   </header>
+   <%end%>

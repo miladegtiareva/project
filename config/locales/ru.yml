@@ -1,0 +1,28 @@
+ru:
+ activerecord:
+  attributes:
+  question:
+  title: "Название"
+  content: "Содержание"
+
+ menu:
+  enter: "Вход"
+
+  menu:
+  reg: "Регистрация"
+
+  menu:
+  hi: "О нас"
+
+  menu:
+  out: "Выйти"
+
+  menu:
+  change: "Изменить профиль"
+
+  menu:
+  prof: "Профиль"
+
+  menu:
+  lan: "Язык"
+  

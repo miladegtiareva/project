@@ -1,0 +1,10 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+question_one:
+  id: 1
+  title: "First Question"
+  content: "This is the content of the first question."
+
+question_two:
+  title: "Second Question"
+  content: "This is the content of the second question."
