@@ -31,7 +31,8 @@ class AnswersController < ApplicationController
     end
   
     def create
-      @answer = @question.answers.build answer_params
+      @answer = @question.answers.build(answer_params.merge(user_id: current_user.id))
+      №@answer.user = current_user
       authorize @answer
       if @answer.save
         flash[:success] = "Ответ создан!"
@@ -67,7 +68,11 @@ class AnswersController < ApplicationController
     end
   
     def set_question!
-      @question = Question.find params[:question_id]
+      @question = Question.find(params[:question_id])
+      unless @question
+        flash[:warning] = 'Вопрос не найден или у вас нет прав доступа к данному вопросу.'
+        redirect_to root_path
+      end
     end
   
     def set_answer!

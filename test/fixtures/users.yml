@@ -1,11 +1,4 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  name: John Doe
-  email: john@example.com
+example_user:
+  email: example@gmail.com
+  name: Example User
   password_digest: <%= BCrypt::Password.create('password') %>
-
-two:
-  email: MyString
-  name: MyString
-  password_digest: MyString

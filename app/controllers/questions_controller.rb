@@ -34,7 +34,7 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question = current_user.questions.build question_params
+    @question = current_user.questions.build(question_params)
     authorize @question
     if @question.save
       flash[:success] = "Вопрос сохранен!"

@@ -21,9 +21,15 @@ class UsersController < ApplicationController
     flash[:warning] = "Вы не зарегистрированы :("
     redirect_to root_path
   end
+  def user_params
+    params.require(:user).permit(:email, :name, :password, :password_confirmation)
+  end
   def edit
   end
-
+  def sign_in(user)
+    session[:user_id]=user.id
+  end
+  
   def update
     if @user.update user_params
       flash[:success] = "Ваш профиль обновлен!"
@@ -34,9 +40,6 @@ class UsersController < ApplicationController
   end 
     def new
       @user = User.new
-    end
-    def sign_in (user)
-      session[:user_id]=user.id
     end
     def create
       @user = User.new user_params
@@ -49,9 +52,4 @@ class UsersController < ApplicationController
       end
     end
   
-    private
-  
-    def user_params
-      params.require(:user).permit(:email, :name, :password, :password_confirmation)
-    end
   end
